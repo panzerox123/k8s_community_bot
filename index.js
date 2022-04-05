@@ -12,7 +12,7 @@ const slackEvents = createEventAdapter(SLACK_SIGNING_SECRET, {
 });
 
 slackEvents.on("reaction_added", (ev, body)=>{
-    if(body.reaction=="eyes") console.log("Upped thumbs !?!");
+    if(ev.reaction=="eyes") console.log("Upped thumbs !?!");
 });
 
 app.use("/events/api/", slackEvents.requestListener());
