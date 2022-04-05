@@ -12,6 +12,7 @@ const slackEvents = createEventAdapter(SLACK_SIGNING_SECRET, {
 });
 
 slackEvents.on("reaction_added", (ev, body)=>{
+    console.log(ev, body);
     if(body.reaction=="thumbsup") console.log("Upped thumbs !?!");
 });
 
