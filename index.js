@@ -3,6 +3,7 @@ const PORT = process.env.PORT || 8080;
 
 const app = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
+  token: process.env.SLACK_BOT_TOKEN,
 });
 
 app.event("reaction_added", (ev) => {
