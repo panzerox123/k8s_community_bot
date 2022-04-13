@@ -6,9 +6,18 @@ const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
 });
 
-app.event("reaction_added", (ev) => {
+app.event("reaction_added", async ({ event, client, logger }) => {
   //console.log(ev);
-  if(ev.payload.reaction=="eyes") console.log("EYES?!");
+  if(event.reaction =="eyes") {
+    console.log("EYES?!");
+    let res = await client.conversations.history({
+      channel: event.item.channel,
+      latest: event.item.ts,
+      inclusive: true,
+      limit: 1,
+    });
+    console.log(res.messages[0]);
+  }
 })
 
 async function main(){
