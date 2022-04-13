@@ -1,8 +1,25 @@
+const {App} = require("@slack/bolt");
+const PORT = process.env.PORT || 8080;
+
+const app = new App({
+  signingSecret: process.env.SLACK_SIGNING_SECRET,
+});
+
+app.event("reaction_added", (ev) => {
+  if(ev.reaction=="eyes") console.log("EYES?!");
+})
+
+async function main(){
+  await app.start(PORT);
+  console.log(`k8s community bot running on ${PORT}`);
+}
+
+main();
+/*
 const { createEventAdapter, errorCodes } = require("@slack/events-api");
 const express = require("express");
 const app = express();
 
-const PORT = process.env.PORT || 8080;
 
 const SLACK_SIGNING_SECRET = process.env.SLACK_SIGNING_SECRET;
 
@@ -22,3 +39,4 @@ app.use(express.json())
 app.listen(PORT, ()=>{
     console.log(`k8s community bot running on ${PORT}`);
 })
+*/
