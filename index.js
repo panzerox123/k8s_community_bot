@@ -7,6 +7,7 @@ const app = new App({
 });
 
 app.event("reaction_added", (ev) => {
+  console.log(ev);
   if(ev.reaction=="eyes") console.log("EYES?!");
 })
 
