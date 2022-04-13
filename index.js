@@ -9,14 +9,14 @@ const app = new App({
 app.event("reaction_added", async ({ event, client, logger }) => {
   //console.log(ev);
   if(event.reaction =="eyes") {
-    console.log("EYES?!");
+    console.log("Eyes reaction received! Finding message!");
     let res = await client.conversations.history({
       channel: event.item.channel,
       latest: event.item.ts,
       inclusive: true,
       limit: 1,
     });
-    console.log(res.messages[0]);
+    console.log("Message recieved: ", res.messages[0].text);
   }
 })
 
